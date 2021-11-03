@@ -47,9 +47,9 @@ Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
    save the disk partition changes: `w`
       
 ### Create the filesystems:
-    - `mkfs.fat -F32 /dev/sda1`
-    - `mkfs.ext4 /dev/sda2`
-    - `mkfs.ext4 /dev/sda3`
+    `mkfs.fat -F32 /dev/sda1`
+    `mkfs.ext4 /dev/sda2`
+    `mkfs.ext4 /dev/sda3`
 
 ### Create the `/root` and `/home` directories:
     - `mount /dev/sda2 /mnt`
