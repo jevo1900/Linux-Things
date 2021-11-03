@@ -124,7 +124,7 @@ usermod -aG wheel,video,audio,storage username
 ### In order to have root privileges we need sudo:
 pacman -S sudo
 
-###Edit /etc/sudoers with nano or vim by uncommenting this line:
+### Edit /etc/sudoers with nano or vim by uncommenting this line:
 Uncomment to allow members of group wheel to execute any command
 %wheel ALL=(ALL) ALL
 
