@@ -1,12 +1,15 @@
 # Installing Arch linux with EFI
 
 1. Change keyboard layout:
+
    `loadkeys no`
 
 2. Verify boot mode:
+
    `ls /sys/firmware/efi/efivars` (If the directory exist your computer supports EFI)
 
 3. Ping some site on the Internet to verify connection:
+
    `ping archlinux.org`
 
 4. Update system clock:
