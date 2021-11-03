@@ -13,21 +13,37 @@
    `ping archlinux.org`
 
 4. Update system clock:
-    - `timedatectl set-ntp true`
-    - You can verify the status with `timedatectl status`
+
+   `timedatectl set-ntp true`
+   
+   You can verify the status with `timedatectl status`
 
 5. Enable SSH:
-    - `systemctl start sshd`
+
+`systemctl start sshd`
 
 6. Change root password:
-    - `passwd`
+
+`passwd`
 
 7. Go to [https://archlinux.org/mirrorlist](https://archlinux.org/mirrorlist) and find the closest mirror that supports HTTPS:
-    - Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
-    - `Server = https://mirror.cloroformo.org/archlinux/$repo/os/$arch` (Spain)
 
-8. Create EFI partition:
-    - `fdisk -l` to find the designation for the HDD. (Most likely `/dev/sda`)
+Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
+
+`Server = https://mirror.cloroformo.org/archlinux/$repo/os/$arch` (Spain)
+
+8. Partitioning the disk:
+
+   - enter into the disk:
+
+      `fdisk /dev/sda`
+      
+   - create a new partition table:
+
+      `g`
+      
+
+`fdisk -l` to find the designation for the HDD. (Most likely `/dev/sda`)
     - `fdisk /dev/sda`
         - g (to create a new partition table)
         - n (to create a new partition)
