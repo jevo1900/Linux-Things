@@ -1,32 +1,32 @@
 # Installing Arch linux with EFI
 
-## Change keyboard layout:
+### Change keyboard layout:
 
    `loadkeys no`
 
-## Verify boot mode:
+### Verify boot mode:
 
    `ls /sys/firmware/efi/efivars` (If the directory exist your computer supports EFI)
 
-## Ping some site on the Internet to verify connection:
+### Ping some site on the Internet to verify connection:
 
    `ping archlinux.org`
    
-## Update system clock:
+### Update system clock:
 
    `timedatectl set-ntp true`
    
    You can verify the status with `timedatectl status`
 
-## Enable SSH:
+### Enable SSH:
 
 `systemctl start sshd`
 
-## Change root password:
+### Change root password:
 
 `passwd`
 
-## Go to [https://archlinux.org/mirrorlist](https://archlinux.org/mirrorlist) and find the closest mirror that supports HTTPS:
+### (Optional) Go to [https://archlinux.org/mirrorlist](https://archlinux.org/mirrorlist) and find the closest mirror that supports HTTPS:
 
 Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
 
