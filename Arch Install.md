@@ -1,5 +1,5 @@
 <p align="center">
-  [Menu](https://github.com/jevo1900/Linux-Things/blob/main/README.md)
+  <a href="https://github.com/jevo1900/Linux-Things/blob/main/README.md">Menu</a>
 </p>
 
 ---
