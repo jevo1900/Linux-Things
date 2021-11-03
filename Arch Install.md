@@ -55,60 +55,60 @@ Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
    `w`
       
 ### Create the filesystems:
-    `mkfs.fat -F32 /dev/sda1`
-    `mkfs.ext4 /dev/sda2`
-    `mkfs.ext4 /dev/sda3`
+    mkfs.fat -F32 /dev/sda1
+    mkfs.ext4 /dev/sda2
+    mkfs.ext4 /dev/sda3
 
 ### Create the `/root` and `/home` directories:
-    - `mount /dev/sda2 /mnt`
-    - `mkdir /mnt/home`
-    - `mount /dev/sda3 /mnt/home`
+    mount /dev/sda2 /mnt
+    mkdir /mnt/home
+    mount /dev/sda3 /mnt/home
 
 ### Install Arch linux base packages:
-    - `pacstrap -i /mnt base`
+    pacstrap -i /mnt base
 
 ### Generate the `/etc/fstab` file:
-    - `genfstab -U -p /mnt >> /mnt/etc/fstab`
+    genfstab -U -p /mnt >> /mnt/etc/fstab
 
 ### Chroot into installed system:
-    - `arch-chroot /mnt`
+    arch-chroot /mnt
 
 ### Set the timezone:
-    - `ln -sf /usr/share/zoneinfo/Europe/Oslo /etc/localtime`
+    ln -sf /usr/share/zoneinfo/Europe/Oslo /etc/localtime
 
 ### Update the Hardware clock:
-    - `hwclock --systohc`
+    hwclock --systohc
 
 ### Install boot manager and other needed packages:
-    - `pacman -S grub efibootmgr dosfstools openssh os-prober mtools linux-headers linux-lts linux-lts-headers`
+    pacman -S grub efibootmgr dosfstools openssh os-prober mtools linux-headers linux-lts linux-lts-headers
 
 ### Set locale:
-    - `sed -i 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen` (uncomment en_US.UTF-8)
-    - `locale-gen`
+    sed -i 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen (uncomment en_US.UTF-8)
+    locale-gen
 
 ### Enable root login via SSH:
-    - `sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config`
-    - `systemctl enable sshd.service`
-    - `passwd` (for changing the root password)
+    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+    systemctl enable sshd.service
+    passwd` (for changing the root password)
 
 ### Create EFI boot directory:
-    - `mkdir /boot/EFI`
-    - `mount /dev/sda1 /boot/EFI`
+    mkdir /boot/EFI
+    mount /dev/sda1 /boot/EFI
 
 ### Install GRUB on EFI mode:
-    - `grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck`
+    grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 
 ### Setup locale for GRUB:
-    - `cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo`
+    cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 
 ### Write GRUB config:
-    - `grub-mkconfig -o /boot/grub/grub.cfg`
+    grub-mkconfig -o /boot/grub/grub.cfg
 
 ### Create swap file:
-    - `fallocate -l 2G /swapfile`
-    - `chmod 600 /swapfile`
-    - `mkswap /swapfile`
-    - `echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab`
+    fallocate -l 2G /swapfile
+    chmod 600 /swapfile
+    mkswap /swapfile
+    echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
 
 ### Exit, unount and reboot:
     exit
