@@ -1,3 +1,7 @@
+
+
+---
+
 # Installing Arch linux with EFI
 
 ### Change keyboard layout:
