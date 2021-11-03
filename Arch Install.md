@@ -115,6 +115,18 @@ Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
     chmod 600 /swapfile
     mkswap /swapfile
     echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
+    
+### Now you can create your user:
+useradd -m username
+passwd username
+usermod -aG wheel,video,audio,storage username
+
+### In order to have root privileges we need sudo:
+pacman -S sudo
+
+###Edit /etc/sudoers with nano or vim by uncommenting this line:
+Uncomment to allow members of group wheel to execute any command
+%wheel ALL=(ALL) ALL
 
 ### Exit, unount and reboot:
     exit
