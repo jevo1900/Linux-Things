@@ -87,6 +87,10 @@ Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
 
 ### Update the Hardware clock:
     hwclock --systohc
+    
+### Network Configurations
+    pacman -S networkmanager
+    systemctl enable NetworkManager
 
 ### Install boot manager and other needed packages:
     pacman -S grub efibootmgr dosfstools openssh os-prober mtools linux-headers linux-lts linux-lts-headers
