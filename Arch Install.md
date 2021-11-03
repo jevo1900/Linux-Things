@@ -1,50 +1,52 @@
 # Installing Arch linux with EFI
 
-1. Change keyboard layout:
+## Change keyboard layout:
 
    `loadkeys no`
 
-2. Verify boot mode:
+## Verify boot mode:
 
    `ls /sys/firmware/efi/efivars` (If the directory exist your computer supports EFI)
 
-3. Ping some site on the Internet to verify connection:
+## Ping some site on the Internet to verify connection:
 
    `ping archlinux.org`
-
-4. Update system clock:
+   
+## Update system clock:
 
    `timedatectl set-ntp true`
    
    You can verify the status with `timedatectl status`
 
-5. Enable SSH:
+## Enable SSH:
 
 `systemctl start sshd`
 
-6. Change root password:
+## Change root password:
 
 `passwd`
 
-7. Go to [https://archlinux.org/mirrorlist](https://archlinux.org/mirrorlist) and find the closest mirror that supports HTTPS:
+## Go to [https://archlinux.org/mirrorlist](https://archlinux.org/mirrorlist) and find the closest mirror that supports HTTPS:
 
 Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
 
 `Server = https://mirror.cloroformo.org/archlinux/$repo/os/$arch` (Spain)
 
-8. Partitioning the disk:
+## Partitioning the disk:
 
-   - enter into the disk: `fdisk /dev/sda`
-   - create a new partition table: `g`
-   - to create a new partition: `n`
+   enter into the disk: `fdisk /dev/sda`
+   
+   create a new partition table: `g`
+   
+   to create a new partition: `n`
       
-    this requires some parameters: first, the index, second, the initial sector, third, the ending sector,  the second and third parameters define the disk size.
+   this requires some parameters: first, the index, second, the initial sector, third, the ending sector,  the second and third parameters define the disk size.
     
-    We will need some partitions to the system, an EFI partition, an root partition and a home partition.
+   We will need some partitions to the system, an EFI partition, an root partition and a home partition.
       
-   - save the disk partition changes: `w`
+   save the disk partition changes: `w`
       
-11. Create the filesystems:
+## Create the filesystems:
     - `mkfs.fat -F32 /dev/sda1`
     - `mkfs.ext4 /dev/sda2`
     - `mkfs.ext4 /dev/sda3`
