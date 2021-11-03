@@ -30,10 +30,12 @@
         - n (to create a new partition)
         - 1
         - enter
-        - +300M
+        - +300Mb
         - t
         - 1 (for EFI)
-        - w
+
+
+        - w (to save)
 
 9. Create `/root` partition:
     - `fdisk /dev/sda`
