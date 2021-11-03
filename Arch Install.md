@@ -111,6 +111,6 @@ Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
     - `echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab`
 
 ### Exit, unount and reboot:
-    ```exit
+    exit
     umount -a
-    reboot```
+    reboot
