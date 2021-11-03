@@ -32,7 +32,7 @@ Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
 
 `Server = https://mirror.cloroformo.org/archlinux/$repo/os/$arch` (Spain)
 
-## Partitioning the disk:
+### Partitioning the disk:
 
    enter into the disk: `fdisk /dev/sda`
    
@@ -46,63 +46,63 @@ Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
       
    save the disk partition changes: `w`
       
-## Create the filesystems:
+### Create the filesystems:
     - `mkfs.fat -F32 /dev/sda1`
     - `mkfs.ext4 /dev/sda2`
     - `mkfs.ext4 /dev/sda3`
 
-12. Create the `/root` and `/home` directories:
+### Create the `/root` and `/home` directories:
     - `mount /dev/sda2 /mnt`
     - `mkdir /mnt/home`
     - `mount /dev/sda3 /mnt/home`
 
-13. Install Arch linux base packages:
+### Install Arch linux base packages:
     - `pacstrap -i /mnt base`
 
-14. Generate the `/etc/fstab` file:
+### Generate the `/etc/fstab` file:
     - `genfstab -U -p /mnt >> /mnt/etc/fstab`
 
-15. Chroot into installed system:
+### Chroot into installed system:
     - `arch-chroot /mnt`
 
-16. Set the timezone:
+### Set the timezone:
     - `ln -sf /usr/share/zoneinfo/Europe/Oslo /etc/localtime`
 
-17. Update the Hardware clock:
+### Update the Hardware clock:
     - `hwclock --systohc`
 
-18. Install boot manager and other needed packages:
+### Install boot manager and other needed packages:
     - `pacman -S grub efibootmgr dosfstools openssh os-prober mtools linux-headers linux-lts linux-lts-headers`
 
-19. Set locale:
+### Set locale:
     - `sed -i 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen` (uncomment en_US.UTF-8)
     - `locale-gen`
 
-20. Enable root login via SSH:
+### Enable root login via SSH:
     - `sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config`
     - `systemctl enable sshd.service`
     - `passwd` (for changing the root password)
 
-21. Create EFI boot directory:
+### Create EFI boot directory:
     - `mkdir /boot/EFI`
     - `mount /dev/sda1 /boot/EFI`
 
-22. Install GRUB on EFI mode:
+### Install GRUB on EFI mode:
     - `grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck`
 
-23. Setup locale for GRUB:
+### Setup locale for GRUB:
     - `cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo`
 
-24. Write GRUB config:
+### Write GRUB config:
     - `grub-mkconfig -o /boot/grub/grub.cfg`
 
-25. Create swap file:
+### Create swap file:
     - `fallocate -l 2G /swapfile`
     - `chmod 600 /swapfile`
     - `mkswap /swapfile`
     - `echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab`
 
-26. Exit, unount and reboot:
+### Exit, unount and reboot:
     - `exit`
     - `umount -a`
     - `reboot`
