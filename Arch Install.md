@@ -1,6 +1,6 @@
-<p align="center">
+<h3 align="center">
   <a href="https://github.com/jevo1900/Linux-Things/blob/main/README.md">Menu</a>
-</p>
+</h3>
 
 ---
 
