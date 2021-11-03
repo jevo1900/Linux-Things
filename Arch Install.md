@@ -34,44 +34,16 @@ Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
 
 8. Partitioning the disk:
 
-   - enter into the disk:
-
-      `fdisk /dev/sda`
+   - enter into the disk: `fdisk /dev/sda`
+   - create a new partition table: `g`
+   - to create a new partition: `n`
       
-   - create a new partition table:
-
-      `g`
+    this requires some parameters: first, the index, second, the initial sector, third, the ending sector,  the second and third parameters define the disk size.
+    
+    We will need some partitions to the system, an EFI partition, an root partition and a home partition.
       
-
-`fdisk -l` to find the designation for the HDD. (Most likely `/dev/sda`)
-    - `fdisk /dev/sda`
-        - g (to create a new partition table)
-        - n (to create a new partition)
-        - 1
-        - enter
-        - +300Mb
-        - t
-        - 1 (for EFI)
-
-
-        - w (to save)
-
-9. Create `/root` partition:
-    - `fdisk /dev/sda`
-        - n
-        - 2
-        - enter
-        - +30G
-        - w
-
-10. Create `/home` partiton:
-    - `fdisk /dev/sda`
-        - n
-        - 3
-        - enter
-        - enter
-        - w
-
+   - save the disk partition changes: `w`
+      
 11. Create the filesystems:
     - `mkfs.fat -F32 /dev/sda1`
     - `mkfs.ext4 /dev/sda2`
