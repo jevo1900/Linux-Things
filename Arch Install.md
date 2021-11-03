@@ -8,7 +8,7 @@
 
 ### Change keyboard layout:
 
-   `loadkeys no`
+   `loadkeys es`
 
 ### Verify boot mode:
 
@@ -80,7 +80,10 @@ Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
     arch-chroot /mnt
 
 ### Set the timezone:
-    ln -sf /usr/share/zoneinfo/Europe/Oslo /etc/localtime
+    ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
+    
+### Set the keyboard layout with persistency: 
+    localectl set-keymap --no-convert es
 
 ### Update the Hardware clock:
     hwclock --systohc
@@ -89,7 +92,7 @@ Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
     pacman -S grub efibootmgr dosfstools openssh os-prober mtools linux-headers linux-lts linux-lts-headers
 
 ### Set locale:
-    sed -i 's/#en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen (uncomment en_US.UTF-8)
+    sed -i 's/#es_ES.UTF-8/es_ES.UTF-8/g' /etc/locale.gen (uncomment es_ES.UTF-8)
     locale-gen
 
 ### Enable root login via SSH:
