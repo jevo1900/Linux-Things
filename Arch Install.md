@@ -71,7 +71,7 @@ Add the mirrors on top of the `/etc/pacman.d/mirrorlist` file.
     mount /dev/sda3 /mnt/home
 
 ### Install Arch linux base packages:
-    pacstrap -i /mnt base
+    pacstrap -i /mnt base linux linux-firmware
 
 ### Generate the `/etc/fstab` file:
     genfstab -U -p /mnt >> /mnt/etc/fstab
